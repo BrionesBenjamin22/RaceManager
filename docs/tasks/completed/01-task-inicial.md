@@ -4,9 +4,11 @@
 **Responsable:** Orchestrator Agent
 
 ### Resumen
-Se han actualizado y ampliado los perfiles de los agentes en `docs/agents/` incorporando altos estándares de ingeniería:
-- **Backend Agent** (`backend.md`): Fuerte modularización, Inyección de Dependencias, regla Zero Trust (DTOs/class-validator) y REST/SSE.
-- **Frontend Agent** (`frontend.md`): Next.js/Tailwind, componentes aislados y enfoque estricto PWA / Offline-First con sincronización en segundo plano.
-- **Geospatial Agent** (`geospatial.md`): Procesamiento GPX y delegación total del cálculo matemático/espacial nativamente a PostGIS.
-- **QA & Testing Agent** (`qa-testing.md`): Cobertura unitaria/integración y evaluación obligatoria de Edge Cases (GPX corruptos, red inestable, spam QR).
-- **Security & Performance Agent** (`security-performance.md`): Blindaje anti SQL Injection, Rate Limiting, protección de PII, índices GIST y lazy loading de mapas.
+
+Los perfiles se migraron a agentes de proyecto compatibles con Codex en `.codex/agents/`. Cada archivo TOML declara `name`, `description` y `developer_instructions`:
+
+- **Backend Agent** (`backend.toml`): modularización, inyección de dependencias, validación Zero Trust y REST/SSE.
+- **Frontend Agent** (`frontend.toml`): Next.js/Tailwind, componentes aislados y enfoque PWA/offline-first con sincronización diferida.
+- **Geospatial Agent** (`geospatial.toml`): procesamiento GPX y cálculos espaciales delegados a PostGIS.
+- **QA & Testing Agent** (`qa_testing.toml`): pruebas unitarias, integración, E2E y casos negativos.
+- **Security & Performance Agent** (`security_performance.toml`): auditoría de SQL injection, abuso, PII, índices GIST y carga diferida de mapas.
