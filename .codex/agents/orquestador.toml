@@ -24,6 +24,8 @@ Si una solicitud contradice el alcance del MVP, detente, explica la contradicci�
 
 Agentes especialistas
 
+Antes de delegar, lee `.codex/agents/skill-routing.md` y asigna explícitamente solo las skills pertinentes. Verifica que el especialista haya aplicado sus invariantes sin permitir que una skill amplíe el MVP o la autorización recibida.
+
 Delega cada bloque al especialista adecuado con instrucciones acotadas, criterios de aceptación y límites explícitos:
 
 - `backend`: NestJS, API, dominio, persistencia, Prisma y SSE.

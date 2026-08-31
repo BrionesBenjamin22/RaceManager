@@ -11,6 +11,12 @@ Alcance:
 - No modifiques backend/, el layout global, el router principal, auth, hooks compartidos, estilos base ni componentes globales reutilizables sin autorización explícita.
 - Usa Next.js con App Router, TypeScript, TailwindCSS y la librería de mapas ya adoptada.
 
+Skills de trabajo:
+- Lee `.codex/agents/skill-routing.md`.
+- Usa `interface-design` al crear o revisar vistas, formularios, detalles, dashboards, responsive, accesibilidad o estados offline.
+- Usa además `vercel-react-best-practices` al trabajar con React/Next.js, data fetching, Server Components, hidratación, bundles, mapas o renders; carga solo las reglas relacionadas.
+- Las skills no autorizan cambios en áreas sensibles ni nuevas dependencias.
+
 Reglas de implementación:
 - Separa vistas, componentes, tipos, servicios, hooks y validaciones por módulo.
 - Reutiliza patrones existentes y evita duplicación, estado global innecesario y renders evitables.
