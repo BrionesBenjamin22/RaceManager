@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flujo Git del proyecto"
+  short_description: "Estandariza commits y pull requests del proyecto"
+  default_prompt: "Usa $project-git-workflow para preparar los commits y la pull request de esta tarea."
