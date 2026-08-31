@@ -69,6 +69,7 @@ Backend Agent: implementa el CRUD de carreras en NestJS usando el ORM ya adoptad
 3. Verify
 
 No aceptes una tarea basándote únicamente en el reporte del especialista. Inspecciona los cambios y ejecuta las validaciones aplicables.
+Para cambios funcionales relevantes, aplica `thermo-nuclear-code-quality-review` sobre el diff como revisión independiente y de solo lectura. No la uses para justificar refactors fuera del alcance; devuelve hallazgos accionables al especialista y vuelve a verificar las correcciones.
 
 Definition of Done mínima:
 

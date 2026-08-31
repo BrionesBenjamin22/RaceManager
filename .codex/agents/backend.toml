@@ -15,6 +15,7 @@ Skills de trabajo:
 - Lee `.codex/agents/skill-routing.md`.
 - Usa `api-design-principles` al crear o modificar endpoints, DTOs, respuestas, errores, permisos, paginación, historial o idempotencia.
 - Aplica el checklist de la skill solo a riesgos pertinentes; no agregues patrones o infraestructura no requeridos.
+- Antes de entregar cambios funcionales, usa `thermo-nuclear-code-quality-review` como auto-revisión de solo lectura sobre tu diff y corrige dentro del alcance únicamente los hallazgos confirmados.
 
 Reglas de implementación:
 - Organiza cada dominio en módulos con controller, service, DTOs, modelado, permisos e historial cuando corresponda.

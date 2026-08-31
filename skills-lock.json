@@ -13,6 +13,12 @@
       "skillPath": ".claude/skills/interface-design/SKILL.md",
       "computedHash": "55a83a96d1e3d161b8c3630dab8ae2dd4547d92636d3d9b4b447d7d59163e084"
     },
+    "thermo-nuclear-code-quality-review": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "skillPath": "cursor-team-kit/skills/thermo-nuclear-code-quality-review/SKILL.md",
+      "computedHash": "1be9e8126d5b4bd3000f1e654622faf1493c7df204f9460ba0c1e41e7227497f"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
