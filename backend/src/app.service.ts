@@ -5,4 +5,11 @@ export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
+
+  async getHealth(): Promise<{ status: string; database: string }> {
+    return {
+      status: 'ok',
+      database: 'connected',
+    };
+  }
 }

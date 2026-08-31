@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Race {
+  id          Int       @id @default(autoincrement())
+  name        String
+  date        DateTime
+  status      String    @default("DRAFT")
+  gpxFile     String?
+  distanceKm  Float?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  participants Participant[]
+  operators   Operator[]
+  incidents   Incident[]
+}
+
+model Participant {
+  id        Int       @id @default(autoincrement())
+  raceId    Int
+  dorsal    Int
+  name      String
+  surname   String
+  dni       String?
+  phone     String?
+  qrToken   String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  race      Race      @relation(fields: [raceId], references: [id])
+  incidents Incident[]
+
+  @@unique([raceId, dorsal])
+}
+
+model Operator {
+  id        Int      @id @default(autoincrement())
+  raceId    Int
+  name      String
+  phone     String?
+  latitude  Float?
+  longitude Float?
+  positionKm Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  race      Race     @relation(fields: [raceId], references: [id])
+}
+
+model Incident {
+  id          Int        @id @default(autoincrement())
+  raceId      Int
+  participantId Int?
+  reason      String
+  description String?
+  latitude    Float?
+  longitude   Float?
+  accuracy    Float?
+  positionKm  Float?
+  status      String     @default("NEW")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  race        Race       @relation(fields: [raceId], references: [id])
+  participant Participant? @relation(fields: [participantId], references: [id])
+}
