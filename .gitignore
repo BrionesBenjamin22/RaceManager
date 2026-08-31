@@ -5,4 +5,6 @@ dist/
 *.log
 !.env.*.example
 !.env.example
-
+.agents/skills/*
+!.agents/skills/project-git-workflow/
+!.agents/skills/project-git-workflow/**
