@@ -19,17 +19,27 @@ Skills de trabajo:
 
 Reglas de implementación:
 - Organiza cada dominio en módulos con controller, service, DTOs, modelado, permisos e historial cuando corresponda.
+- Emite logs estructurados JSON de una línea y alinea nombres y atributos con las convenciones semánticas de OpenTelemetry. Incluye, cuando aplique, timestamp UTC, severidad, `service.name`, entorno, versión, evento, módulo, `request_id`, `trace_id`, `span_id`, ruta normalizada, estado HTTP, duración y código de error. Evita PII, credenciales, payloads sensibles y atributos de cardinalidad no controlada.
 - Mantén la lógica de negocio en servicios inyectables y testeables; los controllers deben limitarse a transporte, autorización y validación.
 - Trata toda entrada como no confiable. Valida y transforma DTOs con los mecanismos ya usados por el proyecto, sanitiza entradas y evita filtrar detalles internos en los errores.
+- No devuelvas errores genéricos. Define códigos estables para máquinas y mensajes seguros, claros y específicos del contexto para personas; indica qué ocurrió, el estado resultante y una acción de recuperación cuando exista, sin exponer detalles internos.
+- Mantén visible el estado del sistema mediante contratos explícitos y consistentes para estados de proceso, resultados parciales, reintentos y degradaciones. Cuando un cambio afecte la interacción, documenta el contrato necesario para que frontend aplique las heurísticas de Nielsen, especialmente visibilidad del estado, prevención y recuperación de errores, consistencia, accesibilidad y control del usuario.
 - Usa consultas parametrizadas. No construyas SQL con interpolación de datos externos.
 - Respeta roles, auditoría, trazabilidad, soft delete cuando aplique y contratos desacoplados del frontend.
 - Para comunicación unidireccional en tiempo real usa SSE, tal como define el MVP.
 - Evita abstracciones anticipadas, refactors amplios y dependencias innecesarias.
 
+Observabilidad desde el inicio:
+- Declara para cada módulo señales útiles antes de implementar: logs, trazas y métricas, con propietario, propósito, atributos de baja cardinalidad y exclusiones de datos sensibles. Conserva correlación mediante `trace_id`, `span_id` y `request_id`.
+- Instrumenta las métricas RED por servicio: tasa de solicitudes, tasa y tipo de errores, y distribución de duración. Agrega métricas de negocio solo si permiten una decisión operativa concreta.
+- Instrumenta límites relevantes: entrada HTTP, Prisma/PostgreSQL, llamadas externas, SSE y trabajos asíncronos. Propaga contexto de trazas y registra excepciones en el span activo.
+- Prefiere APIs y convenciones neutrales de OpenTelemetry y exportación OTLP para desacoplar la instrumentación del proveedor. Mantén el exportador configurable por variables de entorno y no hagas que una falla de telemetría interrumpa el flujo de negocio.
+- Actualiza la documentación del módulo con catálogo de señales, unidades, etiquetas, paneles o alertas esperadas y estrategia de muestreo. Prueba correlación, redacción de datos y comportamiento cuando el colector no esté disponible.
+
 Definition of Done:
 - El backend compila y supera lint y chequeos de tipos aplicables.
 - Agrega o actualiza tests unitarios para lógica crítica y tests de integración para endpoints críticos.
-- Verifica casos negativos, permisos, validación y compatibilidad del contrato existente.
+- Verifica casos negativos, permisos, validación, mensajes y estados observables, compatibilidad del contrato existente y telemetría crítica.
 - Actualiza la documentación de backend afectada.
 
 Entrega al agente principal un resumen conciso con archivos modificados, decisiones, comandos de validación y resultados, riesgos o pendientes. No ejecutes git commit. Sugiere un único mensaje con el formato tipo(scope opcional): descripción breve.
