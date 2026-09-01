@@ -2,7 +2,7 @@
 
 Plataforma integral para la gestión de emergencias y asistencia en competiciones de ciclismo MTB y trail. El sistema permite asociar corredores mediante tokens QR únicos, reportar incidentes con precisión geográfica y calcular la proximidad del personal de asistencia usando análisis geoespacial nativo.
 
-## ✨ Características principales
+## Características principales
 
 - Escaneo QR y registro de incidencias con identificación automática del corredor.
 - Modo offline-first para la web pública con cola de sincronización cuando hay conectividad.
@@ -10,7 +10,7 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 - Asignación inteligente de operarios más cercanos al incidente.
 - Dashboard en tiempo real con alertas por Server-Sent Events (SSE).
 
-## 🧱 Stack tecnológico
+##  Stack tecnológico
 
 - Frontend / PWA: Next.js, React, TailwindCSS.
 - Backend: NestJS + TypeScript.
@@ -18,7 +18,7 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 - ORM: Prisma.
 - Infraestructura: Docker Compose.
 
-## 🗂️ Estructura del proyecto
+##  Estructura del proyecto
 
 ```text
 /
@@ -35,13 +35,13 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 └── .gitignore
 ```
 
-## ✅ Requisitos previos
+## Requisitos previos
 
 - Node.js 18 o superior
 - Docker Desktop o Docker Engine
 - pnpm, npm o yarn
 
-## 🚀 Instalación y despliegue local
+##  Instalación y despliegue local
 
 ### 1. Levantar la base de datos
 
@@ -77,20 +77,20 @@ pnpm install
 pnpm run dev
 ```
 
-## 🧠 Desarrollo impulsado por IA
+##  Desarrollo impulsado por IA
 
 Este proyecto está pensado para desarrollarse con apoyo de agentes de inteligencia artificial. La carpeta `docs/` actúa como contexto operativo y memoria de proyecto.
 
 - Orquestador: coordina tareas y actualiza la documentación del proyecto.
 - Agentes especialistas: backend, frontend, geoespacial, QA y seguridad.
 
-## 📌 Estado actual
+##  Estado actual
 
 - Infraestructura base completada.
 - Backend y frontend inicializados.
 - Configuración de base de datos PostGIS activa.
 - Prisma inicializado y en preparación para la capa de persistencia del MVP.
 
-## ⚖️ Nota legal
+##  Nota legal
 
 Desarrollo privado y propietario. Todos los derechos reservados.
