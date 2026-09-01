@@ -43,17 +43,26 @@ El sistema determinará en qué punto kilométrico del circuito ocurrió el inci
 - **Frontend PWA (QR):** Next.js (Service Workers para offline capability).
 - **Backend:** NestJS (Node.js).
 - **Base de Datos:** PostgreSQL + PostGIS.
-- **ORM:** Prisma o TypeORM.
+- **ORM:** Prisma.
 - **Infraestructura Local:** Docker Compose.
+- **Observabilidad:** OpenTelemetry SDK + OTLP + OpenTelemetry Collector, sin dependencia de proveedor.
 
-## 7. Plan de Ejecución (Sprints)
+## 7. Observabilidad, Estado y Feedback
 
-- **Sprint 1 - Infra y Dominio:** Docker, NestJS, Next.js, Auth, y CRUD básico (Prisma/TypeORM).
+- Cada módulo declara logs, trazas y métricas antes de considerarse completo. Las métricas de servicio siguen RED: tasa de solicitudes, errores y duración.
+- Los logs son JSON estructurado, excluyen PII y secretos, y se correlacionan mediante `request_id`, `trace_id` y `span_id` cuando corresponda.
+- Los errores exponen un código estable, un mensaje contextual seguro, el estado resultante y una acción de recuperación cuando exista. Nunca dependen únicamente de texto genérico.
+- La interfaz mantiene visible el estado de cargas, guardados, sincronización offline, reintentos y degradaciones. El feedback sigue las heurísticas de Nielsen y requisitos básicos de accesibilidad.
+- El contrato completo y el catálogo inicial de señales viven en `docs/02-observability-and-feedback.md`.
+
+## 8. Plan de Ejecución (Sprints)
+
+- **Sprint 1 - Infra y Dominio:** Docker, NestJS, Next.js, Auth y CRUD básico con Prisma.
 - **Sprint 2 - Motor Geoespacial:** Parseo GPX, guardado en PostGIS, y renderizado del mapa.
 - **Sprint 3 - Actores:** CRUD Corredores, Generación QR, CRUD Operarios en mapa.
 - **Sprint 4 - Flujo de Emergencia:** PWA pública, Geolocation API, cálculos PostGIS, y alertas SSE.
 
-## 8. Reglas para los Agentes IA
+## 9. Reglas para los Agentes IA
 
 - **Prohibida la sobreingeniería:** No usar microservicios, Kafka, Redis ni K8s.
 - **Pipeline de Trabajo:** PLAN -> IMPLEMENT -> TEST -> REVIEW -> DOCUMENT -> NEXT TASK.

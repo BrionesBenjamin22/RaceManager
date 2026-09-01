@@ -10,15 +10,16 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 - Asignación inteligente de operarios más cercanos al incidente.
 - Dashboard en tiempo real con alertas por Server-Sent Events (SSE).
 
-##  Stack tecnológico
+## Stack tecnológico
 
 - Frontend / PWA: Next.js, React, TailwindCSS.
 - Backend: NestJS + TypeScript.
 - Base de datos: PostgreSQL + PostGIS.
 - ORM: Prisma.
 - Infraestructura: Docker Compose.
+- Observabilidad: OpenTelemetry SDK, OTLP y OpenTelemetry Collector.
 
-##  Estructura del proyecto
+## Estructura del proyecto
 
 ```text
 /
@@ -30,6 +31,7 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 │   ├── tasks/             # Estado de tareas y entregables
 │   ├── 01-product-definition.md
 │   └── current-task.md
+├── observability/         # Configuración neutral del OpenTelemetry Collector
 ├── docker-compose.yml     # Orquestación local de PostgreSQL + PostGIS
 ├── README.md              # Documento principal del proyecto
 └── .gitignore
@@ -41,13 +43,15 @@ Plataforma integral para la gestión de emergencias y asistencia en competicione
 - Docker Desktop o Docker Engine
 - pnpm, npm o yarn
 
-##  Instalación y despliegue local
+## Instalación y despliegue local
 
 ### 1. Levantar la base de datos
 
 ```bash
 docker compose up -d
 ```
+
+Este comando inicia PostGIS y el Collector OTEL en los puertos `4317` (gRPC) y `4318` (HTTP/protobuf).
 
 ### 2. Instalar dependencias del backend
 
@@ -56,7 +60,7 @@ cd backend
 pnpm install
 ```
 
-Asegúrate de configurar el archivo `.env` a partir de `.env.example` si existe o con la siguiente referencia:
+Asegúrate de crear `backend/.env` desde `backend/.env.example`. La configuración local exporta trazas y métricas a `http://localhost:4318`.
 
 ```env
 DATABASE_URL="postgresql://postgres:password@localhost:5432/mtbrescue?schema=public"
@@ -77,20 +81,25 @@ pnpm install
 pnpm run dev
 ```
 
-##  Desarrollo impulsado por IA
+## Observabilidad y experiencia operativa
+
+La arquitectura, el catálogo inicial de señales RED, el formato de logs y el contrato de errores se documentan en [`docs/02-observability-and-feedback.md`](docs/02-observability-and-feedback.md). OpenTelemetry mantiene la instrumentación desacoplada del proveedor; el Collector local usa un exportador de depuración hasta elegir almacenamiento y paneles.
+
+## Desarrollo impulsado por IA
 
 Este proyecto está pensado para desarrollarse con apoyo de agentes de inteligencia artificial. La carpeta `docs/` actúa como contexto operativo y memoria de proyecto.
 
 - Orquestador: coordina tareas y actualiza la documentación del proyecto.
 - Agentes especialistas: backend, frontend, geoespacial, QA y seguridad.
 
-##  Estado actual
+## Estado actual
 
 - Infraestructura base completada.
 - Backend y frontend inicializados.
 - Configuración de base de datos PostGIS activa.
 - Prisma inicializado y en preparación para la capa de persistencia del MVP.
+- Base OTEL/OTLP y logs JSON estructurados disponibles desde el inicio.
 
-##  Nota legal
+## Nota legal
 
 Desarrollo privado y propietario. Todos los derechos reservados.

@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MTB Rescue Frontend
 
-## Getting Started
+PWA Next.js para reportes públicos, operación de carrera y seguimiento de incidentes.
 
-First, run the development server:
+## Desarrollo local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Usa `pnpm run lint` y `pnpm run build` antes de entregar cambios. Las rutas, vistas y estilos están en `src/app/`; los recursos estáticos viven en `public/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estado y feedback
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Toda interacción asíncrona debe mostrar un estado comprensible: carga, éxito, vacío, error, operación offline, sincronización pendiente o degradación. Después de crear, vuelve al home con `successMessage`; después de editar, vuelve al detalle. Un formulario de edición envía solo diferencias reales y agrupa altas y bajas relacionales.
 
-## Learn More
+Los errores usan el `code` del backend para comportamiento y presentan `message` más `action` en lenguaje claro. Nunca muestres stack traces ni sustituyas un error contextual por “algo salió mal”. Conserva el `requestId` para soporte sin exponer información sensible.
 
-To learn more about Next.js, take a look at the following resources:
+## UX y accesibilidad
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplica las heurísticas de Nielsen: visibilidad del estado, correspondencia con el dominio, control del usuario, consistencia, prevención, reconocimiento, eficiencia, minimalismo, recuperación y ayuda. Mantén foco visible, navegación por teclado, etiquetas asociadas, anuncios accesibles para estados dinámicos, contraste suficiente y diseño responsive. No uses solo color para comunicar estado.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Los homes muestran hasta 9 elementos y los historiales 3 por página. Las decisiones compartidas y el contrato de errores están en [`../docs/02-observability-and-feedback.md`](../docs/02-observability-and-feedback.md).
